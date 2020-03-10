@@ -1,0 +1,36 @@
+<script>
+    $('.comment').click(function () {
+        var commentBtn = $(this);
+        var tr = commentBtn.parent().parent();
+        var td = tr.children();
+        var status = td.eq(8).text();
+        if (status === "AFTER") {
+            window.location.href = "/comment/"+id;
+        } else if (status === "CANCELED") {
+            alert("취소하신 상품입니다!");
+        } else {
+            alert("관람후 작성 가능합니다!");
+        }
+    });
+
+    $('.cancel').click(function () {
+        if (confirm("예약을 취소 하시겠습니까?")) {
+            var cancelBtn = $(this);
+            var tr = cancelBtn.parent().parent();
+            var td = tr.children();
+            var id = td.eq(0).text();
+            $.ajax({
+                type: 'PUT',
+                url: '/api/v2/reservation/'+id,
+                contentType: 'application/json; charset=utf-8',
+                data: 'json'
+            }).done(function (message) {
+                alert(message);
+                window.location.href="/member/mypage";
+            }).fail(function (error) {
+                console.log(error);
+                alert(JSON.stringify(error));
+            });
+        }
+    });
+</script>

@@ -1,0 +1,173 @@
+<script> // 이 달의 쿠폰받기 이벤트
+    $('#addCouponBtn').click(function () {
+        {{#member}}
+            $.ajax({
+                type: 'PUT',
+                url: '/api/v2/coupon/month'
+            }).done(function (message) {
+                alert(message);
+            }).fail(function (error) {
+                console.log(error);
+                alert(JSON.stringify(error));
+            });
+        {{/member}}
+        {{^member}}
+            alert("로그인이 필요합니다.");
+        {{/member}}
+    });
+</script>
+<script> // 카테고리 선택시 상품동적쿼리 이벤트
+    let cateId;
+    let loca;
+    let mon;
+
+    $(".categoryBtn").click(function () {
+        let categoryBtn = $(this);
+        let categoryName = categoryBtn.val();
+
+        if (categoryName === ("뮤지컬")) {
+            cateId = 1;
+        } else if (categoryName === ("전통공연")) {
+            cateId = 2;
+        } else if (categoryName === ("연극")) {
+            cateId = 3;
+        } else {
+            cateId = 4;
+        }
+
+        var data = {
+            page: 0,
+            size: 10,
+            categoryId: cateId,
+            location: loca,
+            month: mon
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/product/list',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            var t1 =
+                    "<thead class='thead-strong'>" +
+                    "<tr>" +
+                    "<td >ID</td>" +
+                    "<td >이름</td>" +
+                    "<td >시작날짜</td>" +
+                    "<td >종료날짜</td>" +
+                    "</tr>" +
+                    "</thead>";
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i].id;
+                t1 += '<tr>' +
+                        '<td>' + id + '</td>' +
+                        '<td>' + "<a href='/product/detail/"+id+"'>" + data[i].name + '</a></td>' +
+                        '<td>' + data[i].startDate + '</td>' +
+                        '<td>' + data[i].endDate + '</td>' +
+                        '</tr>';
+            }
+            $("#tbl").html(t1);
+        }).fail(function (error) {
+            console.log(error);
+            alert(JSON.stringify(error));
+        });
+    });
+
+    $(".locationBtn").click(function () {
+
+        let locationBtn = $(this);
+        loca = locationBtn.val();
+
+        var data = {
+            page: 0,
+            size: 10,
+            categoryId: cateId,
+            location: loca,
+            month: mon
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/product/list',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            var t2 =
+                    "<thead class='thead-strong'>" +
+                    "<tr>" +
+                    "<td >ID</td>" +
+                    "<td >이름</td>" +
+                    "<td >시작날짜</td>" +
+                    "<td >종료날짜</td>" +
+                    "</tr>" +
+                    "</thead>";
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i].id;
+                t2 += '<tr>' +
+                        '<td>' + id + '</td>' +
+                        '<td>' + "<a href='/product/detail/"+id+"'>" + data[i].name + '</a></td>' +
+                        '<td>' + data[i].startDate + '</td>' +
+                        '<td>' + data[i].endDate + '</td>' +
+                        '</tr>';
+            }
+            $("#tbl").html(t2);
+        }).fail(function (error) {
+            console.log(error);
+            alert(JSON.stringify(error));
+        });
+    });
+
+    $(".monthBtn").click(function () {
+
+        let monthBtn = $(this);
+        let btnVal = monthBtn.val();
+
+        if (btnVal === ("2020.03")) {
+            mon = 3;
+        } else if (btnVal === ("2020.04")) {
+            mon = 4;
+        } else if (btnVal === ("2020.05")) {
+            mon = 5;
+        } else {
+            mon = 6;
+        }
+
+        var data = {
+            page: 0,
+            size: 10,
+            categoryId: cateId,
+            location: loca,
+            month: mon
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/product/list',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            var t3 =
+                    "<thead class='thead-strong'>" +
+                    "<tr>" +
+                    "<td >ID</td>" +
+                    "<td >이름</td>" +
+                    "<td >시작날짜</td>" +
+                    "<td >종료날짜</td>" +
+                    "</tr>" +
+                    "</thead>";
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i].id;
+                t3 += '<tr>' +
+                        '<td>' + id + '</td>' +
+                        '<td>' + "<a href='/product/detail/"+id+"'>" + data[i].name + '</a></td>' +
+                        '<td>' + data[i].startDate + '</td>' +
+                        '<td>' + data[i].endDate + '</td>' +
+                        '</tr>';
+            }
+            $("#tbl").html(t3);
+        }).fail(function (error) {
+            console.log(error);
+            alert(JSON.stringify(error));
+        });
+    });
+</script>
+</body>
+</html>

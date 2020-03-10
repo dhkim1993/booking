@@ -1,0 +1,37 @@
+{{>layout/header}}
+<div class="col-md-12">
+    <div class="container"><h1>Product-List</h1>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>카테고리ID</th>
+                <th>상품ID</th>
+                <th>상품이름</th>
+                <th>상세설명</th>
+                <th>수량</th>
+                <th>시작날짜</th>
+                <th>종료날짜</th>
+                <th>위치</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#products}}
+                <tr>
+                    <td>{{categoryId}}</td>
+                    <td>{{id}}</td>
+                    <td><a href="/product/detail/{{id}}">{{name}}</a></td>
+                    <td>{{description}}</td>
+                    <td>{{count}}</td>
+                    <td>{{startDate}}</td>
+                    <td>{{endDate}}</td>
+                    <td>{{location}}</td>
+                    <td><a href="/product/update/{{id}}">수정</a></td>
+                </tr>
+            {{/products}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>layout/footer}}

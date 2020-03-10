@@ -1,0 +1,34 @@
+<script>
+    var coupon = {
+        init: function () {
+            var _this = this;
+            $('#coupon-save').on('click', function () {
+                _this.save();
+            });
+        },
+        save: function () {
+            var data = {
+                name: $('#name').val(),
+                month: $('#month').val(),
+                rate: $('#rate').val(),
+                expirationDate: $('#expirationDate').val()
+            };
+            $.ajax({
+
+                type: 'POST',
+                url: '/api/v2/coupon',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function (message) {
+                alert(message);
+                window.location.href = '/';
+            }).fail(function (error) {
+                console.log(error);
+                alert(JSON.stringify(error));
+            });
+        }
+    };
+    coupon.init();
+</script>
+</body>
+</html>

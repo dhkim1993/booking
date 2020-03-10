@@ -1,0 +1,60 @@
+{{>layout/header}}
+<h1>Select Option Page</h1>
+<div style="width: 20%; margin: auto;">
+    <div>상품사진</div>
+    <label>{{product.name}}</label><br>
+    <label>{{product.startDate}}</label> ~  <label>{{product.endDate}}</label>
+    <div >
+        <label for="name">예매자</label>
+        <input type="text" class="form-control" id="memberName" placeholder="이름">
+    </div>
+    <div >
+        <label for="tel">연락처</label>
+        <input type="text" class="form-control" id="tel" placeholder="연락처">
+    </div>
+    <div >
+        <label for="email">이메일</label>
+        <input type="text" class="form-control" id="email" placeholder="이메일">
+    </div>
+
+    <div>
+        {{option1.optionName}}
+        <div style="float: right">
+            <button type="button" id="option1-minus" style="float:left; margin-right: 20px;">-</button>
+            <label id="current-option1-count" style="float: left"></label>
+            <button type="button" id="option1-plus" style="float:left; margin-left: 20px;">+</button>
+        </div><br>
+        {{option1.price}}
+    </div>
+    <div>
+        {{option2.optionName}}
+        <div style="float: right">
+            <button type="button" id="option2-minus" style="float:left; margin-right: 20px;">-</button>
+            <label id="current-option2-count" style="float: left"></label>
+            <button type="button" id="option2-plus" style="float:left; margin-left: 20px;">+</button>
+        </div><br>
+        {{option2.price}}
+    </div>
+    <div>
+        {{option3.optionName}}
+        <div style="float: right">
+            <button type="button" id="option3-minus" style="float:left; margin-right: 20px;">-</button>
+            <label id="current-option3-count" style="float: left"></label>
+            <button type="button" id="option3-plus" style="float:left; margin-left: 20px;">+</button>
+        </div><br>
+        {{option3.price}}
+    </div>
+
+    선택내역
+    <div id="current-reservation-info">
+        <label id="choice-option1-name"></label> <label id="choice-option1-count"></label><br>
+        <label id="choice-option2-name"></label> <label id="choice-option2-count"></label><br>
+        <label id="choice-option3-name"></label> <label id="choice-option3-count"></label><br>
+        <label>합계</label><br>
+        <label id="totalCnt"> 매</label>
+        <div id="current-total-price">원</div>
+    </div>
+    <button type="button" id="pay">결제하기</button>
+</div>
+
+{{>reservation/js/exhibition-js}}

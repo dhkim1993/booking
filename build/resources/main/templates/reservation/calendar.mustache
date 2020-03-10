@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Display inline</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<div id="datepicker"></div>
+<div id="selectDate"></div>
+<h3>회차선택</h3>
+
+<span id="dis">
+    <button onclick="fn1();">
+    <label id="firstTime"></label><br>
+    <label id="quantity1"></label>
+    </button>
+    <button onclick="fn2();">
+        <label id="secondTime"></label><br>
+        <label id="quantity2"></label>
+    </button>
+</span>
+<button onclick="fn3();">
+    <label id="thirdTime"></label><br>
+    <label id="quantity3"></label>
+</button>
+<button onclick="fn4();">
+    <label id="fourthTime"></label><br>
+    <label id="quantity4"></label>
+</button>
+<a id="next">다음단계</a><br>
+
+기간
+2019.03.01(금) ~ 오픈런
+
+러닝타임
+1시간 40분
+
+관람 가능 연령
+19세 이상 관람가
+
+관람연령 미만 입장 불가. 티켓 수령 시 신분증 지참 필수.
+
+오시는길
+
+사진들...
+
+{{>reservation/js/calendar-js}}

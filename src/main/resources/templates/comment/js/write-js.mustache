@@ -1,0 +1,23 @@
+<script>
+    $(function () {
+        var data = {
+            grade: $('#grade').text(),
+            review: $('#review').text(),
+            productId: '{{dto.productId}}'
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v2/comment',
+            contentType: "application/json; charset=utf-8;",
+            dataType: 'json',
+            data: JSON.stringify(data)
+        }).done(function (message) {
+            alert(message);
+            window.location.href="/product/detail/"+data.productId;
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    });
+</script>
+</body>
+</html>

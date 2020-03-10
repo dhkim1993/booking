@@ -1,0 +1,85 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+</head>
+<body>
+<h2>상품정보</h2>
+{{selectData.productName}}<br>
+{{#selectData.selectDate}}
+    {{selectData.selectDate}}
+{{/selectData.selectDate}}
+{{#selectData.selectTime}}
+    {{selectData.selectTime}}
+{{/selectData.selectTime}}<br>
+
+{{#selectData.reservationOptions}}
+    옵션 : {{optionName}}
+    {{count}}매<br>
+{{/selectData.reservationOptions}}
+
+총 수량 : {{selectData.totalCnt}}<br>
+주문금액 : {{selectData.totalPrice}}<br><br>
+
+<input type="button" id="modify" value="주문상품수정" /><br>
+
+<h2>주문자정보</h2>
+{{selectData.memberName}}<br>
+{{selectData.tel}}<br>
+{{email}}<br>
+<h2>할인</h2>
+
+<!-- 모달을 열기 위한 버튼 -->
+<button type="button" class="btn btn-primary btn-lg" id="openModalBtn">
+    쿠폰목록
+</button>
+
+<!-- 모달 영역 -->
+<div id="modalBox" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="container">
+                        <table class="table table-horizontal table-bordered">
+                            <thead class="thead-strong">
+                            <tr>
+                                <th>쿠폰ID</th>
+                                <th>쿠폰이름</th>
+                                <th>월(month)</th>
+                                <th>할인률</th>
+                                <th>사용기한</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            {{#coupons}}
+                                <tr id="coupon-row">
+                                    <td id="couponId">{{id}}</td>
+                                    <td>{{name}}</td>
+                                    <td>{{month}}</td>
+                                    <td>{{discount.rate}}</td>
+                                    <td>{{expirationDate}}</td>
+                                    <td><input type="button" class="applyBtn" value="사용" /></td>
+                                </tr>
+                            {{/coupons}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="couponId" />
+<p>총 상품금액 : {{selectData.totalPrice}}</p>
+<P>할인금액 : <label id="discount-price"></label></P>
+<p>결제금액 : <label id="finalPrice"></label></p>
+<button id="reservation">결제완료</button>
+
+{{>reservation/js/pay-js}}
+

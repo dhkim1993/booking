@@ -1,0 +1,74 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+</head>
+<body>
+<div style="width: 80%; height:60%; margin-right: auto; margin-left: auto;">
+    <h1>Product-detail</h1>
+    <div style="float: left; width: 50%; height: 30%;">
+        상품사진
+    </div>
+    <div style="float: left; width: 50%; height: 30%;">
+        <button id="next">예매하기</button>
+    </div>
+</div>
+
+<div style="width: 80%; margin-top: auto; margin-right: auto; margin-left: auto;">
+    평점 및 후기<br>
+    {{#total}}
+        예매자 리뷰 {{total}}<br>
+        {{#avg}}
+            <div style="width: 50%; float: left;">{{avg}}/ 5.0</div>
+            <div id="gradeChart" style="float: left; width: 50%;  margin-bottom: 10%;"></div>
+        {{/avg}}
+    {{/total}}
+    {{^total}}
+        예매자 리뷰 0<br>
+        평점 및 후기가 존재하지 않습니다.<br>
+    {{/total}}
+</div>
+
+<div>
+    <table class="comment-table" style="width: 80%; float: left;  margin-right: auto; margin-left: auto;">
+        <tbody>
+        {{#comments}}
+            <tr style="display: none">
+                <td>{{id}}</td>
+            </tr>
+            <tr style="display: none">
+                <td>{{memberId}}</td>
+            </tr>
+            <tr>
+                <td>{{grade}} 점</td>
+            </tr>
+            <tr>
+                <td>{{review}}</td>
+            </tr>
+            <tr>
+                <td>{{memberName}} {{modifiedDate}} <div class="btnn"><button class="openModalBtn">수정</button> <button class="delete">삭제</button></div></td>
+            </tr>
+        {{/comments}}
+        </tbody>
+    </table>
+</div>
+
+상품 설명
+
+<div id="modalBox" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form>
+                    <label for="name">평점</label>
+                    <input type="number" id="grade" max="5" step="0.1" placeholder="평점 입력하세요">
+                    <label for="description">리뷰</label>
+                    <input type="text" id="review" placeholder="한줄평을 작성하세요">
+                </form>
+                <button type="button" id="comment-update">수정완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{>product/js/detail-js}}

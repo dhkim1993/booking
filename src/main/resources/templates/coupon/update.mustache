@@ -1,0 +1,29 @@
+{{>layout/header}}
+<div class="container"><h1>Coupon-Update</h1>
+    <form>
+        <div class="form-group">
+            <label for="id">쿠폰ID</label>
+            <input class="form-control" id="id" value="{{coupon.id}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">쿠폰이름</label>
+            <input type="text" class="form-control" id="name" value="{{coupon.name}}">
+        </div>
+        <div class="form-group">
+            <label for="month">월(month)</label>
+            <input type="text" class="form-control" id="month" value="{{coupon.month}}">
+        </div>
+        <div class="form-group">
+            <label for="rate">할인률</label>
+            <input type="number" class="form-control" id="rate" step="0.1" value="{{coupon.discount.rate}}">
+        </div>
+        <div class="form-group">
+            <label for="expirationDate">사용기한</label>
+            <input type="date" class="form-control" id="expirationDate" value="{{coupon.expirationDate}}">
+        </div>
+    </form>
+    <button type="button" class="btn btn-primary" id="coupon-update">수정완료</button>
+    <button type="button" class="btn btn-danger" id="coupon-delete">삭제</button>
+</div>
+
+{{>coupon/js/update-delete-js}}

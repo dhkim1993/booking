@@ -1,0 +1,25 @@
+{{>layout/header}}
+<div class="col-md-12">
+    <div class="container"><h1>Member-List</h1>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>회원ID</th>
+                <th>name</th>
+                <th>email</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#members}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email.value}}</td>
+                </tr>
+            {{/members}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>layout/footer}}

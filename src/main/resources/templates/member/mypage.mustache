@@ -1,0 +1,50 @@
+{{>layout/header}}
+
+<div class="col-md-12">
+    <div class="container"><h1>Reservation-List</h1>
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>ID</th>
+                <th>예약자</th>
+                <th>연락처</th>
+                <th>상품이름</th>
+                <th>예약날짜</th>
+                <th>회차</th>
+                <th>결제금액</th>
+                <th>위치</th>
+                <th>상태</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#reservations}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{memberName}}</td>
+                    <td>{{tel}}</td>
+                    <td>{{productName}}</td>
+                    <td>
+                        {{#selectDate}}
+                            {{selectDate}}
+                        {{/selectDate}}
+                    </td>
+                    <td>
+                        {{#selectTime}}
+                            {{selectTime}}
+                        {{/selectTime}}
+                    </td>
+                    <td>{{finalPrice}}</td>
+                    <td>{{location}}</td>
+                    <td>{{reservationStatus}}</td>
+                    <td><button class="cancel">예약취소</button></td>
+                    <td><button class="comment">리뷰작성</button></td>
+                </tr>
+            {{/reservations}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{>member/js/mypage-js}}
