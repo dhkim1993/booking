@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/booking.iml" filepath="$PROJECT_DIR$/booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/booking.main.iml" filepath="$PROJECT_DIR$/.idea/modules/booking.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/booking.querydsl.iml" filepath="$PROJECT_DIR$/.idea/modules/booking.querydsl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/booking.test.iml" filepath="$PROJECT_DIR$/.idea/modules/booking.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/springboot.jpa.booking.iml" filepath="$PROJECT_DIR$/.idea/modules/springboot.jpa.booking.iml" />
     </modules>
   </component>
 </project>

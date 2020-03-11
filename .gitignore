@@ -1,0 +1,26 @@
+# Created by .ignore support plugin (hsz.mobi)
+application-oauth.properties
+generated
+.DS_Store
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+/out/
+/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+src/main/generated/
+src/test/java/kr/team/ticketing/domain/common/
