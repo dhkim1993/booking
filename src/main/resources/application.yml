@@ -7,6 +7,10 @@ spring:
     jdbc:
       initialize-schema: always
 
+  h2:
+    console:
+      enabled: true
+      
   datasource:
     url: jdbc:mysql://localhost:3306/booking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
