@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4ed980b-1f2d-4f9d-93ab-ec9516921162" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springboot/jpa/booking/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springboot/jpa/booking/InitDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/springboot/jpa/booking/web/comment/dto/CommentRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/springboot/jpa/booking/web/comment/dto/CommentRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/springboot/jpa/booking/BookingApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/springboot/jpa/booking/BookingApplicationTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="e4ed980b-1f2d-4f9d-93ab-ec9516921162" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -271,7 +262,7 @@
       <updated>1583840008365</updated>
       <workItem from="1583840010452" duration="4000" />
       <workItem from="1583932820689" duration="9333000" />
-      <workItem from="1583977477282" duration="2044000" />
+      <workItem from="1583977477282" duration="2168000" />
     </task>
     <servers />
   </component>
