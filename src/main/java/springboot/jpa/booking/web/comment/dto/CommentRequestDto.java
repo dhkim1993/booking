@@ -1,6 +1,7 @@
 package springboot.jpa.booking.web.comment.dto;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,5 +24,12 @@ public class CommentRequestDto {
                 .grade(grade)
                 .review(review)
                 .build();
+    }
+
+    @Builder
+    public CommentRequestDto(Long productId, int grade, String review) {
+        this.productId = productId;
+        this.grade = grade;
+        this.review = review;
     }
 }
