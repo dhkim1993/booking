@@ -1,5 +1,6 @@
 package springboot.jpa.booking.core.domain.comment;
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 @Transactional
+@RequiredArgsConstructor
 class CommentRepositoryTest {
 
-    @Autowired
-    CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
     @BeforeEach
     public void setUp() {
@@ -44,6 +45,7 @@ class CommentRepositoryTest {
         }
         commentRepository.saveAll(list);
     }
+
 
     @Test
     public void searchByGradeCommentsTest() throws Exception {
