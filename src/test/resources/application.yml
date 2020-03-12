@@ -9,10 +9,10 @@ spring:
       initialize-schema: always
 
   datasource:
-    url: jdbc:mysql://localhost:3306/booking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: rlaehdeod!23
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
