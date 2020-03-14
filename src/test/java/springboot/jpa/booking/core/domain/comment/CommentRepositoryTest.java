@@ -7,11 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static springboot.jpa.booking.core.domain.comment.QComment.comment;
 
 /**
  * Created by kimdonghyun on 12/03/2020.
@@ -46,7 +48,7 @@ class CommentRepositoryTest {
             em.persist(Comment.builder()
                     .memberId(2L)
                     .memberName("코로나")
-                    .grade(4)
+                    .grade(2)
                     .productId(1L)
                     .review("재밋음")
                     .build());
@@ -63,7 +65,7 @@ class CommentRepositoryTest {
     @Test
     public void searchByGradeCommentsTest() throws Exception {
         //given
-        int grade = 5;
+        int grade = 2;
         Long productId = 1L;
         //when
         Long gradeCnt = commentRepository.searchByGradeComments(grade, productId);
@@ -86,8 +88,8 @@ class CommentRepositoryTest {
         //given
         Long productId = 1L;
         //when
-        Double avg = commentRepository.getAvg(1L);
+        double avg = commentRepository.getAvg(productId);
         //then
-        assertThat(avg.doubleValue()).isEqualTo(4.5);
+        assertThat(avg).isEqualTo(3.0);
     }
 }
