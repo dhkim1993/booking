@@ -3,16 +3,20 @@ spring:
     active: local
     include: oauth
 
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
   session:
     store-type: jdbc
     jdbc:
       initialize-schema: always
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/booking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: rlaehdeod!23
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -20,7 +24,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         open-in-view: false
         #show_sql: true
         format_sql: true

@@ -33,10 +33,10 @@ public class InitDb {
 
     @PostConstruct
     public void init() {
-        /*initService.category();
+        initService.category();
         initService.coupon();
         initService.product();
-        initService.comment();*/
+        initService.comment();
     }
 
     @Component
