@@ -1,0 +1,139 @@
+= Booking Restful API Document
+:doctype: booking
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview]]
+== 개요
+
+[[overview-http-verbs]]
+=== HTTP 동사
+
+본 REST API에서 사용하는 HTTP 동사(verbs)는 가능한한 표준 HTTP와 REST 규약을 따릅니다.
+
+|====
+| 동사 | 용례
+
+| `GET`
+| 리소스를 가져올 때 사용
+
+| `POST`
+| 새 리소스를 만들 때 사용
+
+| `PUT`
+| 기존 리소스를 수정할 때 사용
+
+| `PATCH`
+| 기존 리소스의 일부를 수정할 때 사용
+
+| `DELETE`
+| 기존 리소스를 삭제할 떄 사용
+|====
+
+[[overview-http-status-codes]]
+=== HTTP 상태 코드
+
+본 REST API에서 사용하는 HTTP 상태 코드는 가능한한 표준 HTTP와 REST 규약을 따릅니다.
+
+|====
+| 상태 코드 | 용례
+
+| `200 OK`
+| 요청을 성공적으로 처리함
+
+| `201 Created`
+| 새 리소스를 성공적으로 생성함. 응답의 `Location` 헤더에 해당 리소스의 URI가 담겨있다.
+
+| `204 No Content`
+| 기존 리소스를 성공적으로 수정함.
+
+| `400 Bad Request`
+| 잘못된 요청을 보낸 경우. 응답 본문에 더 오류에 대한 정보가 담겨있다.
+
+| `404 Not Found`
+| 요청한 리소스가 없음.
+|====
+
+=== API
+
+[[resources-product]]
+==== 상품 API
+===== product-insert
+include::{snippets}/product/save/http-request.adoc[]
+include::{snippets}/product/save/request-fields.adoc[]
+include::{snippets}/product/save/http-response.adoc[]
+
+===== product-update
+include::{snippets}/product/update/http-request.adoc[]
+include::{snippets}/product/update/request-fields.adoc[]
+include::{snippets}/product/update/http-response.adoc[]
+
+===== product-delete
+include::{snippets}/product/delete/http-request.adoc[]
+include::{snippets}/product/delete/http-response.adoc[]
+
+===== product-search
+include::{snippets}/product/search/http-request.adoc[]
+include::{snippets}/product/search/request-fields.adoc[]
+include::{snippets}/product/search/http-response.adoc[]
+
+[[resources-coupon]]
+==== 쿠폰 API
+===== coupon-insert
+include::{snippets}/coupon/save/http-request.adoc[]
+include::{snippets}/coupon/save/request-fields.adoc[]
+include::{snippets}/coupon/save/http-response.adoc[]
+
+===== coupon-update
+include::{snippets}/coupon/update/http-request.adoc[]
+include::{snippets}/coupon/update/request-fields.adoc[]
+include::{snippets}/coupon/update/http-response.adoc[]
+
+===== coupon-delete
+include::{snippets}/coupon/delete/http-request.adoc[]
+include::{snippets}/coupon/delete/http-response.adoc[]
+
+===== coupon-search
+include::{snippets}/coupon/check/http-request.adoc[]
+include::{snippets}/coupon/check/http-response.adoc[]
+
+[[resources-reservation]]
+==== 예약 API
+===== reservation-insert
+include::{snippets}/reservation/reservation/http-request.adoc[]
+include::{snippets}/reservation/reservation/request-fields.adoc[]
+include::{snippets}/reservation/reservation/http-response.adoc[]
+
+===== reservation-calendar
+include::{snippets}/reservation/calendar/http-request.adoc[]
+include::{snippets}/reservation/calendar/http-response.adoc[]
+
+===== reservation-cancel
+include::{snippets}/reservation/cancel/http-request.adoc[]
+include::{snippets}/reservation/cancel/http-response.adoc[]
+
+===== reservation-select-data-save
+include::{snippets}/reservation/select-data-save/http-request.adoc[]
+include::{snippets}/reservation/select-data-save/request-fields.adoc[]
+include::{snippets}/reservation/select-data-save/http-response.adoc[]
+
+===== reservation-select-data-update
+include::{snippets}/reservation/select-data-update/http-request.adoc[]
+include::{snippets}/reservation/select-data-update/request-fields.adoc[]
+include::{snippets}/reservation/select-data-update/http-response.adoc[]
+
+[[resources-comment]]
+==== 리뷰 API
+===== comment-update
+include::{snippets}/comment/update/http-request.adoc[]
+include::{snippets}/comment/update/request-fields.adoc[]
+include::{snippets}/comment/update/http-response.adoc[]
+
+===== comment-delete
+include::{snippets}/comment/delete/http-request.adoc[]
+include::{snippets}/comment/delete/http-response.adoc[]
+
+
