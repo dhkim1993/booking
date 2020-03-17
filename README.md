@@ -1,4 +1,4 @@
-# booking
+# Booking
 
 Jpa, Querydsl, Oauth2 를 이용한 예약 웹 서비스 입니다.
 
