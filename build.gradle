@@ -1,8 +1,9 @@
 plugins {
     id 'org.springframework.boot' version '2.2.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id 'org.asciidoctor.convert' version "1.5.9.2"
+    id 'java'
 }
 
 group = 'springboot.jpa'
@@ -21,8 +22,8 @@ repositories {
 
 dependencies {
     implementation 'com.querydsl:querydsl-jpa'
-    compile('org.springframework.session:spring-session-jdbc')
-    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.2'
+    implementation('org.springframework.session:spring-session-jdbc')
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.2'
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
@@ -30,19 +31,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.security:spring-security-test'
-    implementation group: 'com.h2database', name: 'h2', version: '1.4.199'
-
+    implementation('org.springframework.boot:spring-boot-starter-hateoas')
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.199'
+    asciidoctor('org.springframework.restdocs:spring-restdocs-asciidoctor')
 }
-
-test {
-    useJUnitPlatform()
-}
-
 
 def querydslDir = "$buildDir/generated/querydsl"
 querydsl {
@@ -57,4 +57,25 @@ configurations {
 }
 compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
 }
