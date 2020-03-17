@@ -8,7 +8,7 @@
         $.ajax({
             type: 'POST',
             url: '/api/v2/comment',
-            contentType: "application/json; charset=utf-8;",
+            contentType: "application/json",
             dataType: 'json',
             data: JSON.stringify(data)
         }).done(function (message) {

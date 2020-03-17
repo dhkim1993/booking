@@ -17,7 +17,6 @@ import springboot.jpa.booking.web.reservation.dto.SelectedDataDto;
 @RequestMapping("/api/v2/")
 public class ReservationApiController {
 
-    private final ProductService productService;
     private final ReservationService reservationService;
     private final InfoByDateService infoByDateService;
 

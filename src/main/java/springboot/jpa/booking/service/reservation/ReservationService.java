@@ -30,6 +30,7 @@ import static springboot.jpa.booking.support.utils.DateTimeUtils.createDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
@@ -41,12 +42,10 @@ public class ReservationService {
     private final ReservationConverter reservationConverter;
 
 
-    @Transactional
     public ReservationResponseDto getReservationDto(Long id) {
         return reservationConverter.convert(reservationRepository.findById(id).get());
     }
 
-    @Transactional
     public Long selectedDataUpdate(SelectedDataDto selectedDataDto) {
         Reservation reservation = reservationRepository.findById(selectedDataDto.getReservationId()).get();
         Product product = productService.findById(selectedDataDto.getProductId());
@@ -55,14 +54,12 @@ public class ReservationService {
     }
 
     //결제페이지로 데이터 넘기기 위한 저장
-    @Transactional
     public Long selectedDataSave(SelectedDataDto selectedDataDto) {
         Product product = productService.findById(selectedDataDto.getProductId());
         List<ReservationOption> reservationOptions = createReservationOptions(product.getOptions(), selectedDataDto);
         return reservationRepository.save(selectedDataDto.toEntity(reservationOptions)).getId();
     }
 
-    @Transactional
     public void reservationSave(ReservationSaveDto reservationSaveDto) {
         Reservation selectedData = reservationRepository.findById(reservationSaveDto.getSelectedDataId()).get();
         Product product = productService.findById(selectedData.getProductId());
@@ -76,7 +73,6 @@ public class ReservationService {
         reservationRepository.save(selectedData);
     }
 
-    @Transactional
     public void checkReservationStatus(List<Reservation> reservations) {
         for (Reservation reservation : reservations) {
             LocalDate selectDate = reservation.getSelectDate();
@@ -90,7 +86,6 @@ public class ReservationService {
         }
     }
 
-    @Transactional
     public void cancel(Long id) {
         Reservation reservation = reservationRepository.findById(id).get();
         Product product = productService.findById(reservation.getProductId());
@@ -101,12 +96,12 @@ public class ReservationService {
         reservation.cancel();
     }
 
-    @Transactional
     public List<ReservationResponseDto> getReservationDtosByMemberId(Long memberId) {
         List<Reservation> reservations = findByMemberId(memberId);
         checkReservationStatus(reservations);
         return reservations.stream().map(reservationConverter::convert).collect(Collectors.toList());
     }
+
     @Transactional(readOnly = true)
     public List<Reservation> findByMemberId(Long memberId) {return reservationRepository.findByMemberId(memberId);}
     @Transactional(readOnly = true)

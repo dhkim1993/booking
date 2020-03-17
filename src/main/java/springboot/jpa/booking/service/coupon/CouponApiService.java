@@ -19,7 +19,6 @@ public class CouponApiService {
 
     private final CouponRepository couponRepository;
     private final CouponValidator couponValidator;
-    private final CouponConverter couponConverter;
 
 
     public String addThisMonthCoupons(Long memberId) {

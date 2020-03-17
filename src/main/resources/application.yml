@@ -3,9 +3,11 @@ spring:
     active: local
     include: oauth
 
-  h2:
-    console:
-      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/booking?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: rlaehdeod!23
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   session:
     store-type: jdbc
@@ -15,7 +17,7 @@ spring:
   jpa:
     hibernate:
       use-new-id-generator-mappings: false
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect

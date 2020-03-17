@@ -1,6 +1,7 @@
 package springboot.jpa.booking.web.comment.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import springboot.jpa.booking.config.auth.LoginUser;
 import springboot.jpa.booking.config.auth.dto.SessionUser;
@@ -20,8 +21,8 @@ public class CommentApiController {
         commentApiService.save(commentRequestDto, user);
         return "save success!";
     }
-    @PutMapping("/{commentId}")
-    public String save(@PathVariable("commentId") Long commentId,
+    @PutMapping(value = "/{commentId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String update(@PathVariable("commentId") Long commentId,
                        @RequestBody CommentRequestDto commentRequestDto) {
         commentApiService.update(commentId, commentRequestDto);
         return "update success!";

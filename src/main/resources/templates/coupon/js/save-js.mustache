@@ -14,10 +14,9 @@
                 expirationDate: $('#expirationDate').val()
             };
             $.ajax({
-
                 type: 'POST',
                 url: '/api/v2/coupon',
-                contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json',
                 data: JSON.stringify(data)
             }).done(function (message) {
                 alert(message);

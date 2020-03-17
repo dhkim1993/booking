@@ -1,7 +1,6 @@
 package springboot.jpa.booking.core.domain.product.repository;
 
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -28,7 +27,6 @@ import static springboot.jpa.booking.core.domain.product.QProduct.product;
 public class ProductRepositoryImpl implements ProductRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
-    private OrderSpecifier<?> expirationDateCheck;
 
     public ProductRepositoryImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
@@ -59,7 +57,8 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
     @Override
     public List<InfoByDate> getInfoByDatesByProductId(Long productId) {
         return queryFactory
-                .selectFrom(infoByDate)
+                .select(infoByDate)
+                .from(product)
                 .where(product.id.eq (productId))
                 .fetch();
     }

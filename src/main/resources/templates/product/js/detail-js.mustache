@@ -33,7 +33,7 @@
             $.ajax({
                 type: 'PUT',
                 url: '/api/v2/comment/'+commentId,
-                contentType: "application/json; charset=utf-8;",
+                contentType: "application/json",
                 data: JSON.stringify(data)
             }).done(function (message) {
                 alert(message);
@@ -52,7 +52,7 @@
             $.ajax({
                 type: 'DELETE',
                 url: '/api/v2/comment/'+commentId,
-                contentType: "application/json; charset=utf-8;",
+                contentType: "application/json",
                 data: JSON.stringify(commentId)
             }).done(function (message) {
                 alert(message);
