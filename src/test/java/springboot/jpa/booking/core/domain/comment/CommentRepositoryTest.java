@@ -1,23 +1,16 @@
 package springboot.jpa.booking.core.domain.comment;
 
-import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static springboot.jpa.booking.core.domain.comment.QComment.comment;
-
-/**
- * Created by kimdonghyun on 12/03/2020.
- */
 
 @SpringBootTest
 @Transactional
@@ -26,7 +19,7 @@ class CommentRepositoryTest {
     @Autowired
     EntityManager em;
 
-    JPQLQueryFactory queryFactory;
+    JPAQueryFactory queryFactory;
 
     @Autowired
     CommentRepository commentRepository;
@@ -70,7 +63,7 @@ class CommentRepositoryTest {
         //when
         Long gradeCnt = commentRepository.searchByGradeComments(grade, productId);
         //then
-        //assertThat(gradeCnt).isEqualTo(10);
+        assertThat(gradeCnt).isEqualTo(10);
     }
 
     @Test
