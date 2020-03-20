@@ -21,7 +21,6 @@ public class SelectedDataDto {
     private Long reservationId;
     private Long productId;
     private Long memberId;
-    private Long couponId;
 
     private String productName;
 
@@ -78,11 +77,10 @@ public class SelectedDataDto {
     }
 
     @Builder
-    public SelectedDataDto(Long reservationId, Long productId, Long memberId, Long couponId, String productName, String memberName, String email, String tel, String selectDate, String selectTime, String location, String optionName1, String optionName2, String optionName3, int optionCount1, int optionCount2, int optionCount3, int totalCnt, int totalPrice, Long finalPrice) {
+    public SelectedDataDto(Long reservationId, Long productId, Long memberId, String productName, String memberName, String email, String tel, String selectDate, String selectTime, String location, String optionName1, String optionName2, String optionName3, int optionCount1, int optionCount2, int optionCount3, int totalCnt, int totalPrice, Long finalPrice) {
         this.reservationId = reservationId;
         this.productId = productId;
         this.memberId = memberId;
-        this.couponId = couponId;
         this.productName = productName;
         this.memberName = memberName;
         this.email = email;

@@ -28,10 +28,11 @@ public class Reservation extends BaseTimeEntity {
     @Column(name = "product_id")
     private Long productId;
 
+    @Column(name = "coupon_id")
+    private Long couponId;
+
     private String productName;
     private String memberName;
-    @Embedded
-    private Email email;
     private String tel;
     private LocalDate selectDate;
     private String selectTime;
@@ -39,6 +40,9 @@ public class Reservation extends BaseTimeEntity {
     private int totalCnt;
     private int totalPrice;
     private Long finalPrice;
+
+    @Embedded
+    private Email email;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
@@ -53,12 +57,17 @@ public class Reservation extends BaseTimeEntity {
     public void addFinalPrice(Long finalPrice) {
         this.finalPrice = finalPrice;
     }
+
     public void addMemberId(Long memberId) {
         this.memberId = memberId;
     }
+
+    public void addCouponId(Long couponId) { this.couponId = couponId; }
+
     public void changeToAfter() {
         this.reservationStatus = ReservationStatus.AFTER;
     }
+
     public void cancel() {
         this.reservationStatus = ReservationStatus.CANCELED;
     }
@@ -67,7 +76,7 @@ public class Reservation extends BaseTimeEntity {
         this.memberName = selectedDataDto.getMemberName();
         this.email = new Email(selectedDataDto.getEmail());
         this.tel = selectedDataDto.getTel();
-        this.totalCnt= selectedDataDto.getTotalCnt();
+        this.totalCnt = selectedDataDto.getTotalCnt();
         this.totalPrice = selectedDataDto.getTotalPrice();
         List<ReservationOption> reservationOptions = this.reservationOptions;
         this.reservationOptions = options;
@@ -76,7 +85,7 @@ public class Reservation extends BaseTimeEntity {
     }
 
     @Builder
-    public Reservation(Long memberId, String productName, String memberName, Email email, String tel, LocalDate selectDate, String selectTime, String location, int totalCnt, int totalPrice, Long finalPrice,  Long productId, List<ReservationOption> reservationOptions) {
+    public Reservation(Long memberId, String productName, String memberName, Email email, String tel, LocalDate selectDate, String selectTime, String location, int totalCnt, int totalPrice, Long finalPrice, Long productId, List<ReservationOption> reservationOptions) {
         this.memberId = memberId;
         this.productName = productName;
         this.memberName = memberName;

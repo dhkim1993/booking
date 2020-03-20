@@ -90,7 +90,6 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
                 .optionCount3(1)
                 .totalCnt(6)
                 .totalPrice(35000)
-                .couponId(null)
                 .finalPrice(null)
                 .reservationId(null)
                 .build();
@@ -150,7 +149,6 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
                 .optionCount3(1)
                 .totalCnt(6)
                 .totalPrice(35000)
-                .couponId(null)
                 .finalPrice(null)
                 .reservationId(null)
                 .build();
@@ -180,8 +178,7 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
                                 fieldWithPath("totalCnt").type(JsonFieldType.NUMBER).description("총 예약 티켓수"),
                                 fieldWithPath("totalPrice").type(JsonFieldType.NUMBER).description("총 가격"),
                                 fieldWithPath("reservationId").type(JsonFieldType.NULL).description("예약id"),
-                                fieldWithPath("finalPrice").type(JsonFieldType.NULL).description("할인후 최종결제가격"),
-                                fieldWithPath("couponId").type(JsonFieldType.NULL).description("쿠폰id")
+                                fieldWithPath("finalPrice").type(JsonFieldType.NULL).description("할인후 최종결제가격")
                         )
                 ));
     }
@@ -211,7 +208,6 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
                 .optionCount3(1)
                 .totalCnt(6)
                 .totalPrice(35000)
-                .couponId(null)
                 .finalPrice(null)
                 .reservationId(reservation.getId())
                 .build();
@@ -242,8 +238,7 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
                                 fieldWithPath("totalCnt").type(JsonFieldType.NUMBER).description("총 예약 티켓수"),
                                 fieldWithPath("totalPrice").type(JsonFieldType.NUMBER).description("총 가격"),
                                 fieldWithPath("reservationId").type(JsonFieldType.NUMBER).description("예약id"),
-                                fieldWithPath("finalPrice").type(JsonFieldType.NULL).description("할인후 최종결제가격"),
-                                fieldWithPath("couponId").type(JsonFieldType.NULL).description("쿠폰id")
+                                fieldWithPath("finalPrice").type(JsonFieldType.NULL).description("할인후 최종결제가격")
                         )
                 ));
     }

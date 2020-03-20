@@ -42,6 +42,10 @@ public class Coupon {
         this.couponStatus = CouponStatus.AFTER;
     }
 
+    public void cancelThenStatusChangeToBefore() {
+        this.couponStatus = CouponStatus.BEFORE;
+    }
+
     public void update(CouponRequestDto couponRequestDto) {
         this.name = couponRequestDto.getName();
         this.month = couponRequestDto.getMonth();

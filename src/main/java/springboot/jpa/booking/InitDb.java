@@ -33,10 +33,10 @@ public class InitDb {
 
     @PostConstruct
     public void init() {
-        /*initService.category();
+        initService.category();
         initService.coupon();
         initService.product();
-        initService.comment();*/
+        initService.comment();
     }
 
     @Component
@@ -55,7 +55,6 @@ public class InitDb {
         public void reservation() {
             SelectedDataDto selectedDataDto = SelectedDataDto.builder()
                     .productId(1L)
-                    .couponId(2L)
                     .memberId(1L)
                     .email("qwe@naver.com")
                     .memberName("코로나즐")

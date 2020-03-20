@@ -63,13 +63,14 @@ public class ReservationService {
     public void reservationSave(ReservationSaveDto reservationSaveDto) {
         Reservation selectedData = reservationRepository.findById(reservationSaveDto.getSelectedDataId()).get();
         Product product = productService.findById(selectedData.getProductId());
-        if (couponValidator.checkDiscount(reservationSaveDto.getCouponId())) {
-            Coupon coupon = couponService.findById(reservationSaveDto.getCouponId());
-            couponValidator.changeCouponStatus(coupon);
-        }
         reservationValidator.forBookingValidation(product, selectedData);
         selectedData.addFinalPrice(reservationSaveDto.getFinalPrice());
         selectedData.addMemberId(reservationSaveDto.getMemberId());
+        if (couponValidator.checkDiscount(reservationSaveDto.getCouponId())) {
+            Coupon coupon = couponService.findById(reservationSaveDto.getCouponId());
+            couponValidator.changeCouponStatus(coupon);
+            selectedData.addCouponId(reservationSaveDto.getCouponId());
+        }
         reservationRepository.save(selectedData);
     }
 
@@ -89,9 +90,14 @@ public class ReservationService {
     public void cancel(Long id) {
         Reservation reservation = reservationRepository.findById(id).get();
         Product product = productService.findById(reservation.getProductId());
-        if (product.getCategoryId() != 4) {
+        if (product.getCategoryId() != 4 && reservationValidator.isAfterTime(reservation)) {
             InfoByDate reservationDateInfo = infoByDateService.findSelectDateInfo(product.getInfoByDates(), reservation.getSelectDate().toString());
             reservationDateInfo.plusQuantity(reservation.getSelectTime(), reservation.getTotalCnt());
+        }
+        if (reservation.getCouponId() != null) {
+            Coupon coupon = couponService.findById(reservation.getCouponId());
+            couponValidator.checkExpirationDate(coupon);
+            coupon.cancelThenStatusChangeToBefore();
         }
         reservation.cancel();
     }
