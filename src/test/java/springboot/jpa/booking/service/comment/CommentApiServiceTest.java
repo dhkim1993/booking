@@ -47,13 +47,8 @@ class CommentApiServiceTest {
         Long productId = 1L;
         //when
         List<CommentResponseDto> allDtoByProductId = commentService.findAllDtoByProductId(productId);
-        CommentResponseDto commentResponseDto = allDtoByProductId.get(0);
         //then
-        System.out.println(allDtoByProductId.size());
-        assertThat(commentResponseDto.getGrade()).isEqualTo(5);
-        assertThat(commentResponseDto.getId()).isEqualTo(10);
-        assertThat(commentResponseDto.getMemberId()).isEqualTo(1L);
-        assertThat(commentResponseDto.getMemberName()).isEqualTo("kim");
+        assertThat(allDtoByProductId.size()).isEqualTo(3);
     }
 
     @Test

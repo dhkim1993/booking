@@ -49,7 +49,8 @@ public class ProductController {
         model.addAttribute("product", productService.findByIdResponseDto(productId));
         Long totalCnt = commentService.getTotalCnt(productId);
         if (totalCnt != 0) {
-            model.addAttribute("avg", commentService.getAvg(productId));
+            double avg = commentService.getAvg(productId);
+            model.addAttribute("avg", Math.round(avg*10)/10.0);
         }
         model.addAttribute("total", totalCnt);
         model.addAttribute("comments", commentService.findAllDtoByProductId(productId));

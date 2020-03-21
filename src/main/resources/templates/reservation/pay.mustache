@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
 </head>
 <body>
+<div style="width: 40%; margin: auto;">
 <h2>상품정보</h2>
 {{selectData.productName}}<br>
 {{#selectData.selectDate}}
@@ -80,6 +81,6 @@
 <P>할인금액 : <label id="discount-price"></label></P>
 <p>결제금액 : <label id="finalPrice"></label></p>
 <button id="reservation">결제완료</button>
-
+</div>
 {{>reservation/js/pay-js}}
 

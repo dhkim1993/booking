@@ -40,6 +40,8 @@
         });
     });
     function noPreviousdate(date) {
+
+
         if (date < new Date() || date < {{product.startDate}}) return [false];
         return [true];
     };

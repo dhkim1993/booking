@@ -115,7 +115,7 @@ class ReservationApiControllerTest extends ControllerTestSupporter {
     @DisplayName("선택한_날짜_데이터_응답")
     public void infoByDateResponse() throws Exception {
         //given
-        String date = "2020-03-20";
+        String date = "2020-04-20";
         Long productId = productRepository.findAll().get(0).getId();
         //when & then
         mockMvc.perform(get(url+"/calendar/"+date+"/"+productId))

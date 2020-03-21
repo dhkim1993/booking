@@ -1,6 +1,5 @@
 package springboot.jpa.booking.web;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
