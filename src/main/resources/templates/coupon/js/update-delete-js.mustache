@@ -1,6 +1,7 @@
 <script>
     var coupon = {
         init: function () {
+            var _this = this;
             $('#coupon-update').on('click', function () {
                 _this.update();
             });
@@ -19,7 +20,7 @@
 
             $.ajax({
                 type: 'PUT',
-                url: '/api/v2/coupon/'+id,
+                url: '/api/v3/coupon/'+id,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(data)
             }).done(function (message) {
@@ -34,7 +35,7 @@
             var id = $('#id').val();
             $.ajax({
                 type: 'DELETE',
-                url: '/api/v2/coupon/'+id,
+                url: '/api/v3/coupon/'+id,
                 contentType: 'application/json; charset=utf-8',
             }).done(function (message) {
                 alert(message);

@@ -24,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CouponApiControllerTest extends ControllerTestSupporter {
 
     private final String url = "http://localhost:" + port + "/api/v2/coupon";
+    private final String adminUrl = "http://localhost:" + port + "/api/v3/coupon";
 
     @Autowired
     CouponRepository couponRepository;
@@ -59,7 +60,7 @@ class CouponApiControllerTest extends ControllerTestSupporter {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     @DisplayName("쿠폰 생성")
     @Order(1)
     public void couponSave() throws Exception {
@@ -71,7 +72,7 @@ class CouponApiControllerTest extends ControllerTestSupporter {
                 .rate(10000)
                 .build();
         //when & then
-        mockMvc.perform(post(url)
+        mockMvc.perform(post(adminUrl)
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(dto)))
                 .andDo(print())
@@ -87,7 +88,7 @@ class CouponApiControllerTest extends ControllerTestSupporter {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     @DisplayName("쿠폰 수정")
     @Order(3)
     public void couponUpdate() throws Exception {
@@ -100,7 +101,7 @@ class CouponApiControllerTest extends ControllerTestSupporter {
                 .build();
         Long couponId = couponRepository.findAll().get(0).getId();
         //when & then
-        mockMvc.perform(put(url+"/"+couponId)
+        mockMvc.perform(put(adminUrl+"/"+couponId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)))
                 .andDo(print())
@@ -116,14 +117,14 @@ class CouponApiControllerTest extends ControllerTestSupporter {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     @DisplayName("쿠폰 삭제")
     @Order(4)
     public void couponDelete() throws Exception {
         //given
         Long couponId = couponRepository.findAll().get(0).getId();
         //when & then
-        mockMvc.perform(delete(url+"/"+couponId))
+        mockMvc.perform(delete(adminUrl+"/"+couponId))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document("coupon/delete"));

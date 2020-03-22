@@ -25,4 +25,9 @@ public class CouponController {
         model.addAttribute("coupon", couponService.findByIdResponseDto(id));
         return "/coupon/update";
     }
+    @GetMapping("/list")
+    public String allCoupon(Model model) {
+        model.addAttribute("coupons", couponService.findAllCoupons());
+        return "/coupon/list";
+    }
 }

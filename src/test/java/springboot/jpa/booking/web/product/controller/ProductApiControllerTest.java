@@ -38,6 +38,7 @@ class ProductApiControllerTest extends ControllerTestSupporter {
     InfoByDateService infoByDateService;
 
     private final String url = "http://localhost"+port+"/api/v2/product";
+    private final String adminUrl = "http://localhost"+port+"/api/v3/product";
 
     @BeforeEach
     public void setUp(){
@@ -104,7 +105,7 @@ class ProductApiControllerTest extends ControllerTestSupporter {
 
     @Test
     @DisplayName("상품생성")
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void productSave() throws Exception {
         //given
         ProductSaveDto dto = ProductSaveDto.builder()
@@ -127,7 +128,7 @@ class ProductApiControllerTest extends ControllerTestSupporter {
                 .fourthTime("20:00")
                 .build();
         //when & then
-        mockMvc.perform(post(url)
+        mockMvc.perform(post(adminUrl)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)))
                 .andDo(print())
@@ -158,7 +159,7 @@ class ProductApiControllerTest extends ControllerTestSupporter {
 
     @Test
     @DisplayName("상품수정")
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void productUpdate() throws Exception {
         //given
         ProductSaveDto dto = ProductSaveDto.builder()
@@ -183,7 +184,7 @@ class ProductApiControllerTest extends ControllerTestSupporter {
 
         Long id = productRepository.findAll().get(0).getId();
         //when & then
-        mockMvc.perform(put(url+"/"+id)
+        mockMvc.perform(put(adminUrl+"/"+id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)))
                 .andDo(print())
@@ -214,12 +215,12 @@ class ProductApiControllerTest extends ControllerTestSupporter {
 
     @Test
     @DisplayName("상품삭제")
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "ADMIN")
     public void productDelete() throws Exception {
         //given
         Long id = productRepository.findAll().get(0).getId();
         //when & then
-        mockMvc.perform(delete(url+"/"+id))
+        mockMvc.perform(delete(adminUrl+"/"+id))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document("product/update"));

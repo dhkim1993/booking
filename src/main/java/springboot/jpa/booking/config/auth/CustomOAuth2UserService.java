@@ -16,6 +16,7 @@ import springboot.jpa.booking.config.auth.dto.SessionUser;
 import springboot.jpa.booking.core.domain.generic.Email;
 import springboot.jpa.booking.core.domain.member.Member;
 import springboot.jpa.booking.core.domain.member.MemberRepository;
+import springboot.jpa.booking.core.domain.member.Role;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
@@ -51,6 +52,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
     private Member saveOrUpdate(OAuthAttributes attributes){
+        if (attributes.getEmail().equals("dhyc9395@gmail.com")) {
+            return memberRepository.save(Member.builder()
+                    .email("dhyc9395@gmail.com")
+                    .name("관리자")
+                    .role(Role.ADMIN)
+                    .build());
+        }
         Member member = memberRepository.findByEmail(new Email(attributes.getEmail()))
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture())).orElse(attributes.toEntity());
         return memberRepository.save(member);

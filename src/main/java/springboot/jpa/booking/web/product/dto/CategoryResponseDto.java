@@ -9,6 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CategoryResponseDto {
 
-    private Long CategoryId;
+    private Long id;
     private String name;
 }

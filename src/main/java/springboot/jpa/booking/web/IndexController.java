@@ -16,6 +16,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
+        if (user != null && user.getName().equals("관리자")) {
+            return "admin";
+        }
         if (user != null) {
             model.addAttribute("member", memberService.getMemberResponseDto(user));
         }

@@ -77,4 +77,10 @@ public class ProductController {
         }
         return "/product/update";
     }
+
+    @GetMapping("/list")
+    public String allProduct(Model model) {
+        model.addAttribute("products",productService.findAllProductResponseDto());
+        return "/product/list";
+    }
 }

@@ -10,6 +10,8 @@ import springboot.jpa.booking.core.domain.comment.CommentRepository;
 import springboot.jpa.booking.core.domain.coupon.Coupon;
 import springboot.jpa.booking.core.domain.coupon.CouponRepository;
 import springboot.jpa.booking.core.domain.generic.money.Ratio;
+import springboot.jpa.booking.core.domain.member.Member;
+import springboot.jpa.booking.core.domain.member.MemberRepository;
 import springboot.jpa.booking.core.domain.product.InfoByDate;
 import springboot.jpa.booking.core.domain.product.Option;
 import springboot.jpa.booking.core.domain.product.repository.ProductRepository;
@@ -33,10 +35,10 @@ public class InitDb {
 
     @PostConstruct
     public void init() {
-        initService.category();
+        /*initService.category();
         initService.coupon();
         initService.product();
-        initService.comment();
+        initService.comment();*/
     }
 
     @Component
@@ -44,6 +46,7 @@ public class InitDb {
     @Transactional
     static class InitService {
 
+        private final MemberRepository memberRepository;
         private final CategoryRepository categoryRepository;
         private final ProductRepository productRepository;
         private final CouponRepository couponRepository;

@@ -11,35 +11,34 @@ import springboot.jpa.booking.web.coupon.dto.CouponRequestDto;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v2/coupon")
 public class CouponApiController {
 
     private final CouponApiService couponApiService;
 
-    @PutMapping("/month")
+    @PutMapping("/api/v2/coupon/month")
     public String addThisMonthCoupons(@LoginUser SessionUser user) {
         return couponApiService.addThisMonthCoupons(user.getId());
     }
 
-    @PostMapping("/{id}/{totalPrice}")
+    @PostMapping("/api/v2/coupon/{id}/{totalPrice}")
     public Long checkCouponExpirationDate(@PathVariable("id") Long couponId,
                             @PathVariable("totalPrice") int totalPrice) {
         return couponApiService.isCanUseCoupon(couponId, totalPrice);
     }
 
-    @PostMapping
+    @PostMapping("/api/v3/coupon")
     public String save(@RequestBody CouponRequestDto couponRequestDto) {
         couponApiService.save(couponRequestDto);
         return "save success!";
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/v3/coupon/{id}")
     public String update(@PathVariable("id") Long id, @RequestBody CouponRequestDto couponRequestDto) {
         couponApiService.update(id, couponRequestDto);
         return "update success!";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/v3/coupon/{id}")
     public String delete(@PathVariable("id") Long id) {
         couponApiService.delete(id);
         return "delete success!";

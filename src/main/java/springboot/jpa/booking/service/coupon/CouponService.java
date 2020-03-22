@@ -27,6 +27,12 @@ public class CouponService {
     public CouponResponseDto findByIdResponseDto(Long id) {
         return couponConverter.convert(couponRepository.findById(id).get());
     }
+
+    public List<CouponResponseDto> findAllCoupons() {
+        List<Coupon> coupons = couponRepository.findAll();
+        return coupons.stream().map(couponConverter::convert).collect(Collectors.toList());
+    }
+
     public Coupon findById(Long id) {
         return couponRepository.findById(id).get();
     }

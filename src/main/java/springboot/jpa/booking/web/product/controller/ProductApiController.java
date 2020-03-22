@@ -23,19 +23,19 @@ public class ProductApiController {
         return productApiService.searchByDynamicCondition(searchCondition);
     }
 
-    @PostMapping("/api/v2/product")
+    @PostMapping("/api/v3/product")
     public String save(@RequestBody ProductSaveDto productSaveDto) {
         productApiService.saveProduct(productSaveDto);
         return "save success!";
     }
 
-    @PutMapping("/api/v2/product/{id}")
+    @PutMapping("/api/v3/product/{id}")
     public String update(@PathVariable("id") Long productId, @RequestBody ProductSaveDto productSaveDto) {
         productApiService.updateProduct(productId, productSaveDto);
         return "update success!";
     }
 
-    @DeleteMapping("/api/v2/product/{id}")
+    @DeleteMapping("/api/v3/product/{id}")
     public String delete(@PathVariable("id") Long id) {
         productApiService.deleteProduct(id);
         return "delete success!";
